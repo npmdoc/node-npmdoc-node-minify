@@ -1,0 +1,297 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/srod/node-minify">node-minify (v2.0.3)</a>
+</h1>
+<h4>Javascript / CSS minifier based on Babili / YUI Compressor / Google Closure Compiler / UglifyJS2 / Sqwish / Clean-css / CSSO</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.node-minify">module node-minify</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-minify.minify">
+            function <span class="apidocSignatureSpan">node-minify.</span>minify
+            <span class="apidocSignatureSpan">(settings)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">node-minify.</span>utils</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.node-minify.utils">module node-minify.utils</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-minify.utils.buildArgs">
+            function <span class="apidocSignatureSpan">node-minify.utils.</span>buildArgs
+            <span class="apidocSignatureSpan">(options)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-minify.utils.clone">
+            function <span class="apidocSignatureSpan">node-minify.utils.</span>clone
+            <span class="apidocSignatureSpan">(obj)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-minify.utils.isNodeV4AndHigher">
+            function <span class="apidocSignatureSpan">node-minify.utils.</span>isNodeV4AndHigher
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-minify.utils.readFile">
+            function <span class="apidocSignatureSpan">node-minify.utils.</span>readFile
+            <span class="apidocSignatureSpan">(file)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-minify.utils.writeFile">
+            function <span class="apidocSignatureSpan">node-minify.utils.</span>writeFile
+            <span class="apidocSignatureSpan">(file, content)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.node-minify" id="apidoc.module.node-minify">module node-minify</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.node-minify.minify" id="apidoc.element.node-minify.minify">
+        function <span class="apidocSignatureSpan">node-minify.</span>minify
+        <span class="apidocSignatureSpan">(settings)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function minify(settings) {
+  deprecated(this.constructor.name, settings);
+  settings = setup(settings);
+  return compress(settings).nodeify(settings.callback);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## Quick Start
+
+```js
+var compressor = require('node-minify');
+
+// Using Google Closure Compiler
+compressor.<span class="apidocCodeKeywordSpan">minify</span>({
+  compressor: 'gcc',
+  input: 'foo.js',
+  output: 'bar.js',
+  callback: function (err, min) {}
+});
+
+// Using UglifyJS
+...</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.node-minify.utils" id="apidoc.module.node-minify.utils">module node-minify.utils</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.node-minify.utils.buildArgs" id="apidoc.element.node-minify.utils.buildArgs">
+        function <span class="apidocSignatureSpan">node-minify.utils.</span>buildArgs
+        <span class="apidocSignatureSpan">(options)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function buildArgs(options) {
+  var args = [];
+
+  Object.keys(options).forEach(function(key) {
+    if (options[key] &amp;&amp; options[key] !== false) {
+      args.push('--' + key);
+    }
+
+    if (options[key] &amp;&amp; options[key] !== true) {
+      args.push(options[key]);
+    }
+  });
+
+  return args;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.node-minify.utils.clone" id="apidoc.element.node-minify.utils.clone">
+        function <span class="apidocSignatureSpan">node-minify.utils.</span>clone
+        <span class="apidocSignatureSpan">(obj)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function clone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * @param {Object} inputSettings
+ * @return {Object}
+ */
+
+function setup(inputSettings) {
+  checkMandatories(inputSettings);
+
+  var settings = extend(utils.<span class="apidocCodeKeywordSpan">clone</span>(defaultSettings), inputSettings);
+  settings = extend(settings, wildcards(settings.input, settings.publicFolder));
+  settings = extend(settings, setPublicFolder(settings.input, settings.publicFolder));
+
+  return settings;
+}
+
+/**
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.node-minify.utils.isNodeV4AndHigher" id="apidoc.element.node-minify.utils.isNodeV4AndHigher">
+        function <span class="apidocSignatureSpan">node-minify.utils.</span>isNodeV4AndHigher
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function isNodeV4AndHigher() {
+  return parseInt(nodeVersion.major, 10) &gt;= 4;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var gcc;
+var gccJava = require('./compressors/gcc-java');
+var noCompress = require('./compressors/no-compress');
+var sqwish = require('./compressors/sqwish');
+var uglifyjs = require('./compressors/uglifyjs');
+var yui = require('./compressors/yui');
+
+if ((process.execArgv &amp;&amp; process.execArgv.indexOf('--use_strict') &gt; -1) || !utils.<span class="apidocCodeKeywordSpan
+">isNodeV4AndHigher</span>()) {
+ gcc = require('./compressors/gcc-java');
+} else {
+ gcc = require('./compressors/gcc');
+}
+
+/**
+* Mapping input compressors to functions
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.node-minify.utils.readFile" id="apidoc.element.node-minify.utils.readFile">
+        function <span class="apidocSignatureSpan">node-minify.utils.</span>readFile
+        <span class="apidocSignatureSpan">(file)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function readFile(file) {
+  return fs.readFileSync(file, 'utf8');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.node-minify.utils.writeFile" id="apidoc.element.node-minify.utils.writeFile">
+        function <span class="apidocSignatureSpan">node-minify.utils.</span>writeFile
+        <span class="apidocSignatureSpan">(file, content)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function writeFile(file, content) {
+  fs.writeFileSync(file, content, 'utf8');
+  return content;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
