@@ -51,7 +51,7 @@
 
         href="https://github.com/srod/node-minify"
 
-    >node-minify (v2.0.3)</a>
+    >node-minify (v2.0.4)</a>
 </h1>
 <h4>Javascript / CSS minifier based on Babili / YUI Compressor / Google Closure Compiler / UglifyJS2 / Sqwish / Clean-css / CSSO</h4>
 <div class="apidocSectionDiv"><a
@@ -72,7 +72,26 @@
 
         <li>
 
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">node-minify.</span>node_minify</span>
+
+        </li>
+
+        <li>
+
             <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">node-minify.</span>utils</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.node-minify.node_minify">module node-minify.node_minify</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-minify.node_minify.minify">
+            function <span class="apidocSignatureSpan">node-minify.node_minify.</span>minify
+            <span class="apidocSignatureSpan">(settings)</span>
+            </a>
 
         </li>
 
@@ -167,6 +186,46 @@ compressor.<span class="apidocCodeKeywordSpan">minify</span>({
 
 
 
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.node-minify.node_minify" id="apidoc.module.node-minify.node_minify">module node-minify.node_minify</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.node-minify.node_minify.minify" id="apidoc.element.node-minify.node_minify.minify">
+        function <span class="apidocSignatureSpan">node-minify.node_minify.</span>minify
+        <span class="apidocSignatureSpan">(settings)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function minify(settings) {
+  deprecated(this.constructor.name, settings);
+  settings = setup(settings);
+  return compress(settings).nodeify(settings.callback);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+## Quick Start
+
+```js
+var compressor = require(&#x27;node-minify&#x27;);
+
+// Using Google Closure Compiler
+compressor.<span class="apidocCodeKeywordSpan">minify</span>({
+  compressor: &#x27;gcc&#x27;,
+  input: &#x27;foo.js&#x27;,
+  output: &#x27;bar.js&#x27;,
+  callback: function (err, min) {}
+});
+
+// Using UglifyJS
+...</pre></li>
+    </ul>
+
+
 </div>
 
 <div class="apidocSectionDiv">
@@ -195,7 +254,17 @@ compressor.<span class="apidocCodeKeywordSpan">minify</span>({
 
   return args;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    &#x27;-server&#x27;,
+    &#x27;-XX:+TieredCompilation&#x27;,
+    &#x27;-jar&#x27;,
+    &#x27;-Xss2048k&#x27;,
+    (legacy) ? binGccLegacy : binGcc,
+    &#x27;--warning_level&#x27;,
+    &#x27;QUIET&#x27;
+  ].concat(utils.<span class="apidocCodeKeywordSpan">buildArgs</span>(options));
+}
+...</pre></li>
     </ul>
 
 
@@ -273,7 +342,22 @@ if ((process.execArgv &#x26;&#x26; process.execArgv.indexOf(&#x27;--use_strict&#
     <li>description and source-code<pre class="apidocCodePre">function readFile(file) {
   return fs.readFileSync(file, &#x27;utf8&#x27;);
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+function compressBabili(settings, content) {
+  return new Promise(function(resolve) {
+var babelOptions = {
+  presets: []
+};
+
+if (settings.options.babelrc) {
+  babelOptions = JSON.parse(utils.<span class="apidocCodeKeywordSpan">readFile</span>(settings.options.babelrc));
+}
+
+if (settings.options.presets) {
+  var babelrcPresets = babelOptions.presets || [];
+  babelOptions.presets = babelrcPresets.concat(settings.options.presets);
+}
+...</pre></li>
     </ul>
 
 
@@ -289,7 +373,19 @@ if ((process.execArgv &#x26;&#x26; process.execArgv.indexOf(&#x27;--use_strict&#
   fs.writeFileSync(file, content, &#x27;utf8&#x27;);
   return content;
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    }
+
+    if (babelOptions.presets.indexOf(&#x27;babili&#x27;) === -1) {
+      babelOptions.presets = babelOptions.presets.concat([babelPresetBabili]);
+    }
+
+    var contentMinified = babel.transform(content, babelOptions);
+    utils.<span class="apidocCodeKeywordSpan">writeFile</span>(settings.output, contentMinified.code);
+    resolve(contentMinified.code);
+  });
+}
+...</pre></li>
     </ul>
 
 
