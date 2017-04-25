@@ -166,20 +166,19 @@
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-## Quick Start
+# Node-minify migration from `1.x.x` to `2.x.x`
 
-```js
-var compressor = require(&#x27;node-minify&#x27;);
+## Config changes
 
-// Using Google Closure Compiler
-compressor.<span class="apidocCodeKeywordSpan">minify</span>({
-  compressor: &#x27;gcc&#x27;,
-  input: &#x27;foo.js&#x27;,
-  output: &#x27;bar.js&#x27;,
-  callback: function (err, min) {}
-});
+- No need to instantiate anymore
 
-// Using UglifyJS
+```new compressor.<span class="apidocCodeKeywordSpan">minify</span>()``` to ```compressor.minify()```
+
+- type was renamed to compressor
+
+```{ type: &#x27;gcc&#x27; }``` to ```{ compressor: &#x27;gcc&#x27; }```
+
+- fileIn was renamed to input
 ...</pre></li>
     </ul>
 
@@ -208,20 +207,19 @@ compressor.<span class="apidocCodeKeywordSpan">minify</span>({
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-## Quick Start
+# Node-minify migration from `1.x.x` to `2.x.x`
 
-```js
-var compressor = require(&#x27;node-minify&#x27;);
+## Config changes
 
-// Using Google Closure Compiler
-compressor.<span class="apidocCodeKeywordSpan">minify</span>({
-  compressor: &#x27;gcc&#x27;,
-  input: &#x27;foo.js&#x27;,
-  output: &#x27;bar.js&#x27;,
-  callback: function (err, min) {}
-});
+- No need to instantiate anymore
 
-// Using UglifyJS
+```new compressor.<span class="apidocCodeKeywordSpan">minify</span>()``` to ```compressor.minify()```
+
+- type was renamed to compressor
+
+```{ type: &#x27;gcc&#x27; }``` to ```{ compressor: &#x27;gcc&#x27; }```
+
+- fileIn was renamed to input
 ...</pre></li>
     </ul>
 
