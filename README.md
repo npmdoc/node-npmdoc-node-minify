@@ -1,6 +1,6 @@
 # npmdoc-node-minify
 
-#### api documentation for  [node-minify (v2.0.4)](https://github.com/srod/node-minify)  [![npm package](https://img.shields.io/npm/v/npmdoc-node-minify.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-node-minify) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-node-minify.svg)](https://travis-ci.org/npmdoc/node-npmdoc-node-minify)
+#### basic api documentation for  [node-minify (v2.0.4)](https://github.com/srod/node-minify)  [![npm package](https://img.shields.io/npm/v/npmdoc-node-minify.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-node-minify) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-node-minify.svg)](https://travis-ci.org/npmdoc/node-npmdoc-node-minify)
 
 #### Javascript / CSS minifier based on Babili / YUI Compressor / Google Closure Compiler / UglifyJS2 / Sqwish / Clean-css / CSSO
 
@@ -110,7 +110,8 @@
         "test": "npm run mocha",
         "test-cov": "npm run pretest && istanbul cover ./node_modules/mocha/bin/_mocha -- -t 60000 -R spec"
     },
-    "version": "2.0.4"
+    "version": "2.0.4",
+    "bin": {}
 }
 ```
 
